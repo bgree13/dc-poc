@@ -1,0 +1,54 @@
+variable "vnet_name"             {type = string}
+variable "resource_group"        {type = string}
+#variable "locations"             {type = list(string)}
+#variable "addr_prefix"           {type = string}
+/*variable "locations"            {
+  #type = list(string)
+  default = {
+    "eastus" = "10.0.0.0/16"
+    "westus" = "10.0.1.0/16"
+  }
+}
+*/
+#variable "subnets" {
+variable "locations" {
+  type = map(object({
+    name        = string
+    number      = number
+    cidr        = string
+    #subnet      = list(string)
+  }))
+
+}
+/*
+variable "subnets" {
+  default = [
+    {
+      name   = "dev"
+      number = 1
+    },
+    {
+      name   = "qa"
+      number = 2
+    },
+    {
+      name   = "prod"
+      number = 3
+    },
+  ]
+}
+*/
+/*
+locations = {
+    eastus = {
+        name   = "eastus"
+        number = 1
+        cidr = "10.0.0.0/16"
+    },
+    westus = {
+        name   = "westus"
+        number = 1
+        cidr = "10.0.1.0/16"
+    }
+}
+*/
