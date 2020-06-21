@@ -5,3 +5,4 @@ terraform.tfstate.*
 .terraform.tfstate.lock.info
 crash.log
 creds.tf
+.DS_Store
