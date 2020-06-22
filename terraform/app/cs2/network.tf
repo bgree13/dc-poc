@@ -1,3 +1,18 @@
+module "vnet-cloud" {
+  source                 = "../../shared-modules/vnet"
+  resource_group_prefix  = local.rsg_pfx
+  locations = {
+      eastus = {
+          name   = local.loc_eastus
+          cidr   = [local.cidr_addr_1]
+      },
+      westus = {
+          name   = local.loc_westus
+          cidr   = [local.cidr_addr_1]
+      }
+  }
+}
+
 module "vwan-cloud" {
   source                 = "../../shared-modules/avw"
   resource_group_prefix  = local.rsg_pfx
