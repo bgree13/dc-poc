@@ -91,11 +91,11 @@ module "aeg-cloud" {
   locations = {
       eastus = {
           name      = local.loc_eastus
-          avh_id    = "${module.vwan-cloud.avh_id["avh-eastus"]}"
+          avh_id    = "${module.vhub-cloud.avh_id["avh-eastus"]}"
       },
       westus = {
           name   = local.loc_westus
-          avh_id    = "${module.vwan-cloud.avh_id["avh-westus"]}"
+          avh_id    = "${module.vhub-cloud.avh_id["avh-westus"]}"
       }
   }
 }
@@ -164,6 +164,21 @@ module "subnet-prod" {
             vnet       = local.loc_westus
             env        = local.var_env_prod
             addr_pfx   = local.addr_pfx_prod_1
+        }
+    }
+}
+
+module "nsg-dev-01" {
+    source                 = "../../shared-modules/nsg"
+    resource_group_prefix  = local.rsg_pfx
+    locations = {
+        eastus = {
+            nsg        = local.loc_eastus
+            env        = local.var_env_dev
+        },
+        westus = {
+            nsg        = local.loc_westus
+            env        = local.var_env_dev
         }
     }
 }
