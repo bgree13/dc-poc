@@ -1,5 +1,8 @@
 # cs2
 
+## Architecture
+![Architecture](/arch_diagram.png)
+
 ## Requirements
 
 - Install [Terraform]
