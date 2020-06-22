@@ -15,15 +15,15 @@ locals {
 
   # admin
   var_env_admin         = "admin"
-  addr_pfx_admin_1      = "10.0.2.0/24"
   subnet_eastus_admin_1 = "subnet-eastus-admin"
   subnet_westus_admin_1 = "subnet-westus-admin"
+  addr_pfx_admin_1      = "10.0.2.0/24"
 
   # dev
   var_env_dev          = "dev"
-  addr_pfx_dev_1       = "10.0.3.0/24"
   subnet_eastus_dev_1  = "subnet-eastus-dev"
   subnet_westus_dev_1  = "subnet-westus-dev"
+  addr_pfx_dev_1       = "10.0.3.0/24"
 
   # qa
   var_env_qa      = "qa"
@@ -32,6 +32,10 @@ locals {
   # prod
   var_env_prod    = "prod"
   addr_pfx_prod_1 = "10.0.5.0/24"
+
+  # vm
+  vm_standard_size_eastus = "Standard_F2"
+  vm_standard_size_westus = "Standard_D2s_v3"
 
 }
 
@@ -55,7 +59,7 @@ module "vwan-cloud" {
   resource_group_prefix  = local.rsg_pfx
   locations = {
       eastus = {
-          name      = local.loc_eastus
+          name   = local.loc_eastus
       },
       westus = {
           name   = local.loc_westus
@@ -70,7 +74,7 @@ module "vhub-cloud" {
       eastus = {
           name   = local.loc_eastus
           addr_pfx  = local.addr_pfx_vwan_1
-          avw_id     = "${module.vwan-cloud.avw_id["avw-eastus"]}"
+          avw_id    = "${module.vwan-cloud.avw_id["avw-eastus"]}"
 
       },
       westus = {
@@ -87,11 +91,11 @@ module "aeg-cloud" {
   locations = {
       eastus = {
           name      = local.loc_eastus
-          avh_id     = "${module.vwan-cloud.avh_id["avh-eastus"]}"
+          avh_id    = "${module.vwan-cloud.avh_id["avh-eastus"]}"
       },
       westus = {
           name   = local.loc_westus
-          avh_id     = "${module.vwan-cloud.avh_id["avh-westus"]}"
+          avh_id    = "${module.vwan-cloud.avh_id["avh-westus"]}"
       }
   }
 }
@@ -174,7 +178,7 @@ module "nic-jump-admin-01" {
             subnet_id  = "${module.subnet-admin.subnet_id["${local.subnet_eastus_admin_1}"]}"
         },
         westus = {
-            nic       = local.loc_westus
+            nic        = local.loc_westus
             env        = local.var_env_admin
             subnet_id  = "${module.subnet-admin.subnet_id["${local.subnet_westus_admin_1}"]}"
         }
@@ -190,14 +194,13 @@ module "vm-linux-jump-admin-01" {
             lvm        = local.loc_eastus
             env        = local.var_env_admin
             nic_id     = "${module.nic-jump-admin-01.nic_id["nic-eastus-admin"]}"
-            size        = "Standard_F2"
+            size       = local.vm_standard_size_eastus
         },
         westus = {
             lvm        = local.loc_westus
             env        = local.var_env_admin
             nic_id     = "${module.nic-jump-admin-01.nic_id["nic-westus-admin"]}"
-            size       = "Standard_D2s_v3"
+            size       = local.vm_standard_size_westus
         }
     }
 }
-*/
