@@ -3,6 +3,6 @@ variable "locations" {
   type = map(object({
     name        = string
     addr_pfx    = string
-    avh_id      = string
+    avw_id      = string
   }))
 }

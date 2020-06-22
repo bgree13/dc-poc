@@ -70,13 +70,13 @@ module "vhub-cloud" {
       eastus = {
           name   = local.loc_eastus
           addr_pfx  = local.addr_pfx_vwan_1
-          avh_id     = "${module.vwan-cloud.avw_id["avw-eastus"]}"
+          avw_id     = "${module.vwan-cloud.avw_id["avw-eastus"]}"
 
       },
       westus = {
           name   = local.loc_westus
           addr_pfx   = local.addr_pfx_vwan_1
-          avh_id     = "${module.vwan-cloud.avw_id["avw-westus"]}"
+          avw_id     = "${module.vwan-cloud.avw_id["avw-westus"]}"
       }
   }
 }
@@ -87,11 +87,11 @@ module "aeg-cloud" {
   locations = {
       eastus = {
           name      = local.loc_eastus
-          avh_id     = "${module.vwan-cloud.avw_id["avw-eastus"]}"
+          avh_id     = "${module.vwan-cloud.avh_id["avh-eastus"]}"
       },
       westus = {
           name   = local.loc_westus
-          avh_id     = "${module.vwan-cloud.avw_id["avw-westus"]}"
+          avh_id     = "${module.vwan-cloud.avh_id["avh-westus"]}"
       }
   }
 }
@@ -200,3 +200,4 @@ module "vm-linux-jump-admin-01" {
         }
     }
 }
+*/
