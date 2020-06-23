@@ -1,7 +1,7 @@
 # cs2
 
 ## Architecture
-<img alt="Terraform" src="https://github.com/bgree13/dc-poc/blob/master/terraform/app/cs2/arch_diagram.png" width="600px">
+<img alt="Terraform" src="https://github.com/bgree13/dc-poc/blob/master/terraform/app/cs2/arch_diagram.png" width="700px">
 
 ## Requirements
 
